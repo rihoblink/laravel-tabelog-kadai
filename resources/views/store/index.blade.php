@@ -23,6 +23,7 @@
         @endforeach
       </div>
     </div>
+    {{ $stores->links() }}
   </div>
 </div>
 @endsection
