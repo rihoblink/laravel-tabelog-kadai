@@ -3,7 +3,12 @@
  
 @section('content')
 <div class="row">
+  <div class="col-2">
+  @component('components.sidebar', ['categories' => $categories, 'names' => $names])
+  @endcomponent
+  </div>
   <div class="col-9">
+
     <div class="container mt-4">
       <div class="row w-100">
         @foreach($stores as $store)
@@ -23,7 +28,7 @@
         @endforeach
       </div>
     </div>
-    {{ $stores->links() }}
+    {{ $stores->appends(request()->query())->links() }}
   </div>
 </div>
 @endsection

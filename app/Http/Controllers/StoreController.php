@@ -13,11 +13,22 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Store::paginate(15);
+        if ($request->category !== null) {
+            $stores = Store::where('category_id', $request->category)->paginate(15);
+            $total_count = Store::where('category_id', $request->category)->count();
+            $category = Category::find($request->category);
+        } else {
+            $stores = Store::paginate(15);
+            $total_count = "";
+            $category = null;
+        }
 
-        return view('store.index', compact('stores'));
+        $categories = Category::all();
+        $names = Category::pluck('name')->unique();
+
+        return view('store.index', compact('stores', 'categories', 'names', 'total_count'));
     }
 
     /**
