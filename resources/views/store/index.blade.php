@@ -8,6 +8,19 @@
   @endcomponent
   </div>
   <div class="col-9">
+  
+    <div class="container">
+      @if ($keyword !== null)
+        <a href="{{ route('stores.index') }}">トップ</a> > 商品一覧
+        <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
+      @endif
+    </div>
+    <div>
+      Sort By
+        @sortablelink('id', 'ID')
+        @sortablelink('price', 'Price')
+    </div>
+
 
     <div class="container mt-4">
       <div class="row w-100">

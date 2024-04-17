@@ -3,9 +3,8 @@
     <a class="navbar-brand" href="{{ url('/') }}">
       {{ config('app.name', 'Laravel') }}
     </a>
-    <form class="row g-1">
-      <div class="col-auto">
-        <input class="form-control tabelog-header-search-input">
+    <form action="{{ route('stores.index') }}" method="GET" class="row g-1">      <div class="col-auto">
+        <input class="form-control tabelog-header-search-input" name="keyword">
       </div>
       <div class="col-auto">
         <button type="submit" class="btn tabelog-header-search-button"><i class="fas fa-search tabelog-header-search-icon"></i></button>

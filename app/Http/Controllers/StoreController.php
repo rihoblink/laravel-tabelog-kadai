@@ -15,12 +15,18 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->keyword;
+
         if ($request->category !== null) {
-            $stores = Store::where('category_id', $request->category)->paginate(15);
+            $stores = Store::where('category_id', $request->category)->sortable()->paginate(15);
             $total_count = Store::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
+        } elseif ($keyword !== null) {
+            $stores = Store::where('name', 'like', "%{$keyword}%")->sortable()->paginate(15);
+            $total_count = $stores->total();
+            $category = null;
         } else {
-            $stores = Store::paginate(15);
+            $stores = Store::sortable()->paginate(15);
             $total_count = "";
             $category = null;
         }
@@ -28,7 +34,7 @@ class StoreController extends Controller
         $categories = Category::all();
         $names = Category::pluck('name')->unique();
 
-        return view('store.index', compact('stores', 'categories', 'names', 'total_count'));
+        return view('store.index', compact('stores', 'categories', 'names', 'total_count', 'keyword'));
     }
 
     /**
