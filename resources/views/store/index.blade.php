@@ -16,9 +16,8 @@
       @endif
     </div>
     <div>
-      Sort By
-        @sortablelink('id', 'ID')
-        @sortablelink('price', 'Price')
+      並び替え
+        @sortablelink('price', '価格')
     </div>
 
 
