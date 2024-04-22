@@ -71,4 +71,13 @@ class UserController extends Controller
     {
         return view('users.edit_password');
     }
+
+    public function favorite()
+    {
+        $user = Auth::user();
+ 
+        $favorite_stores = $user->favorite_stores;
+ 
+        return view('users.favorite', compact('favorite_stores'));
+    }
 }

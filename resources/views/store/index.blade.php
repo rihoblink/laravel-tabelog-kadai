@@ -32,7 +32,7 @@
             <div class="col-12">
               <p class="tabelog-store-label mt-2">
                 {{$store->name}}<br>
-                <label>￥{{$store->price}}</label>
+                <label>予算 : {{$store->price}}円</label>
               </p>
             </div>
           </div>

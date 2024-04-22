@@ -18,28 +18,28 @@
         </p>
         <hr>
         <p class="d-flex align-items-end">
-          ￥{{$store->price}}(税込)
+          予算 : {{$store->price}}円
         </p>
         <hr>
         <!-- 営業時間 -->
         <p class="">
-          {{$store->hours}}
+          営業時間 : {{$store->hours}}
         </p>
         <!-- 郵便番号 -->
         <p class="">
-          {{$store->code}}
+          〒 {{$store->code}}
         </p>
         <!-- 住所 -->
         <p class="">
-          {{$store->address}}
+          住所 : {{$store->address}}
         </p>
         <!-- 電話番号 -->
         <p class="">
-          {{$store->phone}}
+          TEL : {{$store->phone}}
         </p>
         <!-- 定休日 -->
         <p class="">
-          {{$store->holiday}}
+          定休日 : {{$store->holiday}}
         </p>
       </div>
       @auth
@@ -53,20 +53,11 @@
         <input type="hidden" name="address" value="{{$store->address}}">
         <input type="hidden" name="phone" value="{{$store->phone}}">
         <input type="hidden" name="holiday" valie="{{$store->address}}">
-        <div class="form-group row">
-          <label for="quantity" class="col-sm-2 col-form-label">数量</label>
-          <div class="col-sm-10">
-            <input type="number" id="quantity" name="qty" min="1" value="1" class="form-control w-25">
-          </div>
-        </div>
+        
+        <!-- 予約日時実装箇所 -->
+
         <input type="hidden" name="weight" value="0">
         <div class="row">
-          <div class="col-7">
-            <button type="submit" class="btn tabelog-submit-button w-100">
-              <i class="fas reservation"></i>
-                予約ページに追加
-            </button>
-          </div>
           <div class="col-5">
           @if(Auth::user()->favorite_stores()->where('store_id', $store->id)->exists())
             <a href="{{ route('favorites.destroy', $store->id) }}" class="btn tabelog-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
