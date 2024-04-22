@@ -32,9 +32,8 @@ class StoreController extends Controller
         }
 
         $categories = Category::all();
-        $names = Category::pluck('name')->unique();
 
-        return view('store.index', compact('stores', 'categories', 'names', 'total_count', 'keyword'));
+        return view('store.index', compact('stores', 'categories', 'total_count', 'keyword'));
     }
 
     /**

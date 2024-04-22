@@ -1,5 +1,5 @@
 body {
-  background-color: #f8fafc;
+  background-color: #f3e7db;
   font-family: 'メイリオ', 'Meiryo', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -118,7 +118,7 @@ label {
 
 .tabelog-header-container {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: #f1ece2;
 }
 
 .tabelog-header-search-input {
@@ -166,5 +166,5 @@ label {
 .tabelog-favorite-add-cart {
   border-radius: 2px;
   color: #ffffff;
-  background-color: #0fbe9f;
+  background-color: #e69d69;
 }

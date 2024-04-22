@@ -4,14 +4,13 @@
 @section('content')
 <div class="row">
   <div class="col-2">
-  @component('components.sidebar', ['categories' => $categories, 'names' => $names])
-  @endcomponent
+    @component('components.sidebar', ['categories' => $categories])
+    @endcomponent
   </div>
   <div class="col-9">
-  
     <div class="container">
       @if ($keyword !== null)
-        <a href="{{ route('stores.index') }}">トップ</a> > 商品一覧
+        <a href="{{ route('stores.index') }}">トップ</a> > 店舗一覧
         <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
       @endif
     </div>

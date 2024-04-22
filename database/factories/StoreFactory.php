@@ -22,7 +22,7 @@ class StoreFactory extends Factory
             'price' => fake()->numberBetween(100, 200000),
             'hours' => fake()->realText(50, 5),
             'code' => fake()->postcode(),
-            'address' => fake()->address(),
+            'address' => fake()->prefecture().fake()->streetAddress(),
             'phone' => fake()->phoneNumber(),
             'holiday' => fake()->realText(50, 5),
             'category_id' => 1,
