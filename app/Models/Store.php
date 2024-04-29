@@ -39,4 +39,9 @@ class Store extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

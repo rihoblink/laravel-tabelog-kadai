@@ -47,7 +47,7 @@ class StoreController extends Controller
 
         $categories = Category::all();
 
-        return view('store.index', compact('stores', 'categories', 'total_count', 'keyword', 'sorts', 'sorted'));
+        return view('store.index', compact('stores', 'category', 'categories', 'total_count', 'keyword', 'sorts', 'sorted'));
     }
 
     /**

@@ -44,8 +44,8 @@
           </div>
           <div class="col-9 d-flex align-items-center ms-2 mt-3">
             <div class="d-flex flex-column">
-              <label for="user-name">注文履歴</label>
-              <p>注文履歴を確認できます</p>
+              <label for="user-name">予約履歴</label>
+              <p>予約履歴を確認できます</p>
             </div>
           </div>
         </div>

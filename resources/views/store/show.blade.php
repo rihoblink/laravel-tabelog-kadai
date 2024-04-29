@@ -60,6 +60,7 @@
         <input type="hidden" name="image" value="{{$store->image}}">
         
         <!-- 予約日時実装箇所 -->
+        <select name="rese" id=""></select>
 
         <input type="hidden" name="weight" value="0">
         <div class="row">
