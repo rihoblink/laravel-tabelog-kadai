@@ -4,6 +4,12 @@
 <div class="container d-flex justify-content-center mt-3">
   <div class="w-50">
     <h1>マイページ</h1>
+
+    @if (session('flash_message'))
+      <div class="alert alert-light">
+        {{ session('flash_message') }}
+      </div>
+    @endif
  
     <hr>
  

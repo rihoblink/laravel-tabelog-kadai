@@ -26,6 +26,7 @@ class ReviewController extends Controller
         $review->content = $request->input('content');
         $review->store_id = $request->input('store_id');
         $review->user_id = Auth::user()->id;
+        $review->score = $request->input('score');
         $review->save();
 
         return back();

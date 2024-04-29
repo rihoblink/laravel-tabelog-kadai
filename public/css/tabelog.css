@@ -1,7 +1,7 @@
 body {
   background-color: #f3e7db;
   font-family: 'メイリオ', 'Meiryo', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -64,6 +64,35 @@ label {
   color: #191919;
 }
 
+a {
+  color: #ff6a00;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+}
+
+header > nav {
+  padding: 12px 0;
+}
+
+footer {
+  width: 100%;
+  height: 56px;
+  position: absolute;
+  bottom: 0;
+}
+
+a img {
+  transition: 0.3s;
+}
+
+a img:hover {
+  opacity: 0.8;
+}
+
+
 .tabelog-login-input {
   border-radius: 2px;
   border: solid 1px #b2b2b2;
@@ -81,8 +110,9 @@ label {
 }
 
 .tabelog-require-input-label {
-  border-radius: 1px;
+  border-radius: 2px;
   background-color: #e2001b;
+  padding: 0 6px;
 }
 
 .tabelog-require-input-label-text {
@@ -102,8 +132,26 @@ label {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #ffffff;
   background-color: #e69d69;
+  border-radius: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: 0.1s;
+}
+
+.tabelog-submit-button:hover {
+  opacity: 0.8;
+}
+
+.tabelog-submit-button-disabled {
+  border-radius: 2px;
+  font-weight: bold;
+  pointer-events: none;
+  background-color: #e5e5e5;
+  border-color: #e5e5e5;
+  color: #b2b2b2;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .tabelog-login-text {
@@ -122,11 +170,18 @@ label {
 }
 
 .tabelog-header-search-input {
+  border-radius: 2px;
   border: solid 1px #e5e5e5;
 }
 
 .tabelog-header-search-button {
+  border-radius: 2px;
   background-color: #e69d69;
+  transition: 0.1s;
+}
+
+.tabelog-header-search-button:hover {
+  opacity: 0.8;
 }
 
 .tabelog-header-search-icon {
@@ -143,12 +198,19 @@ label {
 
 .tabelog-favorite-button {
   border-radius: 2px;
-  border: solid 1px #e69d69;
+  border: solid 1px #f278cf;
   background-color: #ffffff;
+  font-weight: 8px;
+  padding-bottom: 8px;
+  transition: 0.1s;
+}
+
+.tabelog-favorite-button:hover {
+  opacity: 0.8;
 }
 
 .text-favorite {
-  color: #e69d69;
+  color: #f278cf;
 }
 
 .tabelog-sidebar-category-label {
@@ -167,4 +229,53 @@ label {
   border-radius: 2px;
   color: #ffffff;
   background-color: #e69d69;
+}
+
+.review-score-color {
+  color: #e69d69;
+}
+
+.review-score-color:focus {
+  color: #e69d69;
+}
+
+.tabelog-delete-submit-button {
+  border-radius: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: 0.1s;
+}
+
+.tabelog-delete-submit-button:hover {
+  opacity: 0.8;
+}
+
+.tabelog-product-img-detail {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.tabelog-product-img-recommend {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.tabelog-product-img-products {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.tabelog-product-img-cart {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+}
+
+.tabelog-product-img-cart-history {
+  width: 90%;
+  height: 160px;
+  object-fit: cover;
 }

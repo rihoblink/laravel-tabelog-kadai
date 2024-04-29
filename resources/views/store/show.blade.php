@@ -6,7 +6,11 @@
 <div class="d-flex justify-content-center">
   <div class="row w-75">
     <div class="col-5 offset-1">
-      <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fluid">
+      @if ($store->image)
+        <img src="{{ asset($store->image) }}" class="w-100 img-fluid">
+      @else
+        <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fluid">
+      @endif
     </div>
     <div class="col">
       <div class="d-flex flex-column">
@@ -27,7 +31,7 @@
         </p>
         <!-- 郵便番号 -->
         <p class="">
-          〒 {{$store->code}}
+          〒{{$store->code}}
         </p>
         <!-- 住所 -->
         <p class="">
@@ -53,6 +57,7 @@
         <input type="hidden" name="address" value="{{$store->address}}">
         <input type="hidden" name="phone" value="{{$store->phone}}">
         <input type="hidden" name="holiday" valie="{{$store->address}}">
+        <input type="hidden" name="image" value="{{$store->image}}">
         
         <!-- 予約日時実装箇所 -->
 
@@ -93,6 +98,7 @@
       <div class="row">
         @foreach($reviews as $review)
           <div class="offset-md-5 col-md-5">
+            <h3 class="review-score-color">{{ str_repeat('★', $review->score) }}</h3>
             <p class="h3">{{$review->title}}</p>
             <p class="h3">{{$review->content}}</p>
             <label>{{$review->created_at}} {{$review->user->name}}</label>
@@ -105,6 +111,14 @@
         <div class="offset-md-5 col-md-5">
           <form method="POST" action="{{ route('reviews.store') }}">
             @csrf
+            <h4>評価</h4>
+              <select name="score" class="form-control m-2 review-score-color">
+                <option value="5" class="review-score-color">★★★★★</option>
+                <option value="4" class="review-score-color">★★★★</option>
+                <option value="3" class="review-score-color">★★★</option>
+                <option value="2" class="review-score-color">★★</option>
+                <option value="1" class="review-score-color">★</option>
+              </select>
             <h4>タイトル</h4>
             @error('title')
               <strong>タイトルを入力してください</strong>

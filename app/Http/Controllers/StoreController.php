@@ -17,23 +17,37 @@ class StoreController extends Controller
     {
         $keyword = $request->keyword;
 
+        $sorts = [
+            '新着順' => 'created_at desc',
+            '価格が安い順' => 'price asc',
+        ];
+
+        $sort_query = [];
+        $sorted = "created_at desc";
+
+        if ($request->has('select_sort')) {
+            $slices = explode(' ', $request->input('select_sort'));
+            $sort_query[$slices[0]] = $slices[1];
+            $sorted = $request->input('select_sort');
+        }
+
         if ($request->category !== null) {
-            $stores = Store::where('category_id', $request->category)->sortable()->paginate(15);
+            $stores = Store::where('category_id', $request->category)->sortable($sort_query)->orderBy('created_at', 'desc')->paginate(12);
             $total_count = Store::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
         } elseif ($keyword !== null) {
-            $stores = Store::where('name', 'like', "%{$keyword}%")->sortable()->paginate(15);
+            $stores = Store::where('name', 'like', "%{$keyword}%")->sortable($sort_query)->orderBy('created_at', 'desc')->paginate(12);
             $total_count = $stores->total();
             $category = null;
         } else {
-            $stores = Store::sortable()->paginate(15);
-            $total_count = "";
+            $stores = Store::sortable($sort_query)->orderBy('created_at', 'desc')->paginate(12);
+            $total_count = $stores->total();
             $category = null;
         }
 
         $categories = Category::all();
 
-        return view('store.index', compact('stores', 'categories', 'total_count', 'keyword'));
+        return view('store.index', compact('stores', 'categories', 'total_count', 'keyword', 'sorts', 'sorted'));
     }
 
     /**
@@ -79,7 +93,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        $reviews = $store->reviews()->get();
+        $reviews = $store->reviews()->paginate(5);
 
         return view('store.show', compact('store', 'reviews'));
     }

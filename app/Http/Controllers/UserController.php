@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->phone = $request->input('phone') ? $request->input('phone') : $user->phone;
         $user->update();
  
-        return to_route('mypage');
+        return to_route('mypage')->with('flash_message', '会員情報を更新しました。');
     }
 
     public function update_password(Request $request)
@@ -64,7 +64,7 @@ class UserController extends Controller
             return to_route('mypage.edit_password');
         }
  
-        return to_route('mypage');
+        return to_route('mypage')->with('flash_message', 'パスワードを更新しました。');
     }
 
     public function edit_password()
@@ -76,8 +76,14 @@ class UserController extends Controller
     {
         $user = Auth::user();
  
-        $favorite_stores = $user->favorite_stores;
- 
+        $favorite_stores = $user->favorite_stores()->paginate(5);
+
         return view('users.favorite', compact('favorite_stores'));
+    }
+
+    public function destroy(Request $request)
+    {
+        Auth::user()->delete();
+        return redirect('/')->with('flash_message', '退会が完了しました。');
     }
 }

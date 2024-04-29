@@ -10,6 +10,21 @@ class Store extends Model
 {
     use HasFactory, Sortable;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'hours',
+        'code',
+        'address',
+        'phone',
+        'holiday',
+        'category_id',
+        'image',
+        'recommend_flag',
+        'carriage_flag',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

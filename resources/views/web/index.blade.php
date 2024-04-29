@@ -1,111 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-  <div class="col-2">
-    @component('components.sidebar', ['categories' => $categories])
-    @endcomponent
-  </div>
-  <div class="col-9">
-    <h1>おすすめ店舗</h1>
-    <div class="row">
-      <div class="col-4">
-        <a href="#">
-          <img src="{{ asset('img/chestnut.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              うどん きしめん 山田屋<br>
-              <label>予算 : 1000円</label>
-            </p>
-          </div>
+<div class="container pt-2">
+    @if (session('flash_message'))
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="alert alert-light">
+                    {{ session('flash_message') }}
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-4">
-        <a href="#">
-          <img src="{{ asset('img/persimmon.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              味仙(台湾ラーメン) <br>
-              <label>予算 : 1200円</label>
-            </p>
+    @endif
+  <div class="row">
+    <div class="col-2">
+      @component('components.sidebar', ['categories' => $categories])
+      @endcomponent
+    </div>
+    <div class="col-9">
+      <h1>おすすめ店舗</h1>
+      <div class="row">
+        @foreach ($recommend_stores as $recommend_store)
+          <div class="col-4">
+            <a href="{{ route('stores.show', $recommend_store) }}">
+              @if ($recommend_store->image !== "")
+                <img src="{{ asset($recommend_store->image) }}" class="img-thumbnail">
+              @else
+                <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
+              @endif
+            </a>
+            <div class="row">
+              <div class="col-12">
+                <p class="tabelog-store-label mt-2">
+                  {{ $recommend_store->name }}<br>
+                  <label>￥{{ $recommend_store->price }}</label>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <a href="#">
-          <img src="{{ asset('img/persimmon.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              煮込みうどん山本屋本店(和食) <br>
-              <label>予算 : 900円</label>
-            </p>
-          </div>
-        </div>
+        @endforeach
       </div>
 
-    </div>
-
-    <h1>新規店舗</h1>
-    <div class="row">
-      <div class="col-3">
-        <a href="#">
-          <img src="{{ asset('img/robot-vacuum-cleaner.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              TOIRO
-              <label>予算 : 900円</label>
-            </p>
-          </div>
-        </div>
+      <div class="d-flex justify-content-between">
+        <h1>新規店舗</h1>
+        <a href="{{ route('stores.index', ['sort' => 'id', 'direction' => 'desc']) }}">もっと見る</a>
       </div>
-      <div class="col-3">
-        <a href="#">
-          <img src="{{ asset('img/robot-vacuum-cleaner.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              名古屋コーチン鉄板酒場とりしげ
-              <label>予算 : 2000円</label>
-            </p>
+      <div class="row">
+        @foreach ($recently_stores as $recently_store)
+          <div class="col-3">
+            <a href="{{ route('stores.show', $recently_store) }}">
+              @if ($recently_store->image !== "")
+                <img src="{{ asset($recently_store->image) }}" class="img-thumbnail">
+              @else
+                <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
+              @endif
+            </a>
+            <div class="row">
+              <div class="col-12">
+                <p class="tabelog-store-label mt-2">
+                  {{ $recently_store->name }}<br>
+                  <label>￥{{ $recently_store->price }}</label>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <a href="#">
-          <img src="{{ asset('img/robot-vacuum-cleaner.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              釜揚げスパゲッティ すぱじろう 中日ビル店
-              <label>予算 : 1600円</label>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <a href="#">
-          <img src="{{ asset('img/robot-vacuum-cleaner.jpg') }}" class="img-thumbnail">
-        </a>
-        <div class="row">
-          <div class="col-12">
-            <p class="tabelog-store-label mt-2">
-              DE CARNERO CASTE NAGOYA
-              <label>予算 : 800円</label>
-            </p>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
-  </div>
+</div>
 </div>
 @endsection

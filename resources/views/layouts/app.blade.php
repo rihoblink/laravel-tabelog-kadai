@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <div id="app">
+        <div id="app" class="tabelog-wrapper">
             @component('components.header')
             @endcomponent
 
