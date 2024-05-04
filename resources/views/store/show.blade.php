@@ -47,21 +47,14 @@
         </p>
       </div>
       @auth
+
+      <!-- 予約日時実装箇所 -->
+      <div class="col-5">
+        <a href="{{ route('reservation.create', $store) }}">予約</a>
+      </div>
+
       <form method="POST" class="m-3 align-items-end">
         @csrf
-        <input type="hidden" name="id" value="{{$store->id}}">
-        <input type="hidden" name="name" value="{{$store->name}}">
-        <input type="hidden" name="price" value="{{$store->price}}">
-        <input type="hidden" name="hours" value="{{$store->hours}}">
-        <input type="hidden" name="code" value="{{$store->code}}">
-        <input type="hidden" name="address" value="{{$store->address}}">
-        <input type="hidden" name="phone" value="{{$store->phone}}">
-        <input type="hidden" name="holiday" valie="{{$store->address}}">
-        <input type="hidden" name="image" value="{{$store->image}}">
-        
-        <!-- 予約日時実装箇所 -->
-        <select name="rese" id=""></select>
-
         <input type="hidden" name="weight" value="0">
         <div class="row">
           <div class="col-5">

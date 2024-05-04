@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,8 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('stores', StoreController::class);
 
+    Route::resource('reservation', ReservationController::class)->only(['create']);
+
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
     Route::post('favorites/{store_id}', [FavoriteController::class, 'store'])->name('favorites.store');
@@ -41,3 +44,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');
     });
 });
+
