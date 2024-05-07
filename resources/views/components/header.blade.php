@@ -50,6 +50,7 @@
             <i class="far fa-heart"></i>
           </a>
         </li>
+        
         @endguest
       </ul>
     </div>

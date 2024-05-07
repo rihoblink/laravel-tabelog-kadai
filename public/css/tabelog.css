@@ -279,3 +279,7 @@ a img:hover {
   height: 160px;
   object-fit: cover;
 }
+
+th, td {
+  background-color: #f8fafc !important;
+}

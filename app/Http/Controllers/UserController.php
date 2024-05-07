@@ -86,4 +86,5 @@ class UserController extends Controller
         Auth::user()->delete();
         return redirect('/')->with('flash_message', '退会が完了しました。');
     }
+
 }

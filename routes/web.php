@@ -27,7 +27,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('stores', StoreController::class);
 
-    Route::resource('reservation', ReservationController::class)->only(['create']);
+    Route::get('reservations/{store_id}', [ReservationController::class,'create'])->name('reservations.create');
 
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

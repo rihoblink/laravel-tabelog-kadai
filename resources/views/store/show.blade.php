@@ -47,11 +47,12 @@
         </p>
       </div>
       @auth
-
       <!-- 予約日時実装箇所 -->
-      <div class="col-5">
-        <a href="{{ route('reservation.create', $store) }}">予約</a>
-      </div>
+      <form method="post">
+        <div class="col-5">
+          <a href="{{ route('reservations.create', $store->id) }}">予約</a>
+        </div>
+      </form>
 
       <form method="POST" class="m-3 align-items-end">
         @csrf

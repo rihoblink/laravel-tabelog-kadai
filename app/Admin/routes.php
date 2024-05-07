@@ -4,7 +4,7 @@ use Illuminate\Routing\Router;
 use App\Admin\Controllers\CategoryController;
 use App\Admin\Controllers\StoreController;
 use App\Admin\Controllers\UserController;
-
+use App\Admin\Controllers\ReservationController;
 
 Admin::routes();
 
@@ -20,5 +20,6 @@ Route::group([
     $router->resource('stores', StoreController::class);
     $router->resource('users', UserController::class);
     $router->post('stores/import', [StoreController::class, 'csvImport']);
+    $router->resource('reservations', ReservationController::class);
 
 });

@@ -33,6 +33,17 @@
           @method('DELETE')
         </form>
       </div>
+      <div class="col-md-3 d-flex align-items-center justify-content-end">
+        <form method="POST" action="{{ route('reservations.create') }}" class="m-3 align-items-end">
+          @csrf
+          <input type="hidden" name="id" value="{{ $favorite_store->id }}">
+          <input type="hidden" name="name" value="{{ $favorite_store->name }}">
+          <input type="hidden" name="price" value="{{ $favorite_store->price }}">
+          <input type="hidden" name="qty" value="1">
+          <input type="hidden" name="weight" value="0">
+          <button type="submit" class="btn tabelog-favorite-add-cart">予約する</button>
+        </form>
+      </div>
       @endforeach
     </div>
  
