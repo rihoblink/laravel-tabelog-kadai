@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('stores', StoreController::class);
 
     Route::get('reservations/{store_id}', [ReservationController::class,'create'])->name('reservations.create');
+    Route::post('reservations', [Reservation::class, 'store'])->name('reservations.store');
 
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

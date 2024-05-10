@@ -13,10 +13,10 @@
     <div class="d-flex flex-column">
    
       <h1 class="">
-        ああ{{$store->name}}
+        {{$store->name}}
       </h1>
       <p class="">
-        いいいい{{$store->description}}
+        {{$store->description}}
       </p>
       <hr>
       <p class="">
@@ -26,7 +26,7 @@
     </div>
     <div>
       <label>予約日 : </label>
-      <input type="date">
+      <input type="date" name="reservation_date">
     </div>
     <div>
       <label>人数 : </label>
