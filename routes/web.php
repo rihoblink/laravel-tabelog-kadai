@@ -7,6 +7,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,5 +44,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
         Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');
     });
+
+    Route::get('payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('payment/createCharge', [PaymentController::class, 'createCharge'])->name('payment.createCharge');
 });
 
