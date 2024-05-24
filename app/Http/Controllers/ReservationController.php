@@ -19,15 +19,20 @@ class ReservationController extends Controller
         return view('reservation.create', compact('store'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Store $store)
     {
+        $request->validate([
+            'reservation_date' => 'required|after_or_equal:today',
+            'people' => 'required|numeric|min:1',
+        ]);
+
         $reservation = new Reservation();
-        $reservation->reservation_date = $request->input('reservation_date');
+        $reservation->reservation_datetime = $request->input('reservation_date');
         $reservation->people = $request->input('people');
-        $reservation->user_id = $request->input('user_id');
-        $reservation->store_id = $request->input('store_id');
+        $reservation->store_id = $store->id;
+        $reservation->user_id = Auth::id();
         $reservation->save();
 
-        return view('store.show');
+        return redirect('stores.show', $store);
     }
 }

@@ -25,8 +25,10 @@ Route::get('/', [WebController::class, 'index'])->name('top');
 
 require __DIR__.'/auth.php';
 
+Route::resource('stores', StoreController::class);
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('stores', StoreController::class);
 
     Route::get('reservations/{store_id}', [ReservationController::class,'create'])->name('reservations.create');
     Route::post('reservations', [Reservation::class, 'store'])->name('reservations.store');
@@ -46,7 +48,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');
     });
 
-    Route::get('payment/create', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('payment/createCharge', [PaymentController::class, 'createCharge'])->name('payment.createCharge');
+    Route::get('/user/payment', 'User\PaymentController@getCurrentPayment')->name('user.payment');
+    Route::get('/user/payment/form', 'User\PaymentController@getPaymentForm')->name('user.payment.form');
+    Route::post('/user/payment/store', 'User\PaymentController@storePaymentInfo')->name('user.payment.store');
+    Route::post('/user/payment/destroy', 'User\PaymentController@deletePaymentInfo')->name('user.payment.destroy');
 });
 
